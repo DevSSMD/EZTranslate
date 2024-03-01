@@ -1,9 +1,4 @@
-//
-//  SelectLanguageVC.swift
-//  EZTranslate
-//
-//  Created by Sana Siddiqui on 2/27/24.
-//
+
 
 import UIKit
 
@@ -13,31 +8,23 @@ class SelectLanguageVC: UIViewController {
     var collectionView: UICollectionView!
     let titleLabel = UILabel()
     let languages = [
-        "English",
-        "Spanish",
-        "French",
-        "German",
-        "Italian",
-        "Portuguese",
-        "Dutch",
-        "Russian",
-        "Chinese",
-        "Japanese",
-        "Korean",
-        "Arabic",
-        "Hindi",
-        "Bengali",
-        "Tamil",
-        "Turkish",
-        "Polish",
-        "Greek",
-        "Swedish",
-        "Norwegian",
-        "Danish",
-        "Finnish",
-        "Hungarian",
-        "Thai",
-        "Vietnamese",
+        "English": "en",
+        "Spanish": "es",
+        "French": "fr",
+        "German": "de",
+        "Italian": "it",
+        "Portuguese": "pt",
+        "Dutch": "n1",
+        "Russian": "ru",
+        "Japanese": "ja",
+        "Korean": "ko",
+        "Hindi": "hi",
+        "Bengali": "bn",
+        "Urdu": "ur",
+        "Turkish": "tr",
+        "Greek": "el",
+        "Thai": "th",
+        "Vietnamese": "vi"
     ]
     
     
@@ -48,8 +35,8 @@ class SelectLanguageVC: UIViewController {
         view.backgroundColor = .systemBackground
         
         titleLabel.text = "Select Language"
-        titleLabel.textColor = .black
-        titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        titleLabel.textColor = .black 
+        titleLabel.font = .preferredFont(forTextStyle: .headline)
         titleLabel.textAlignment = .center
         
         layout.scrollDirection = .vertical
@@ -79,7 +66,7 @@ class SelectLanguageVC: UIViewController {
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -40),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60),
         
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.widthAnchor.constraint(equalToConstant: 200),
             titleLabel.heightAnchor.constraint(equalToConstant: 50)
@@ -101,7 +88,7 @@ extension SelectLanguageVC: UICollectionViewDelegate, UICollectionViewDataSource
             fatalError("unable to dequeue cell")
         }
         
-        let language = languages[indexPath.item]
+        let language = Array(languages.keys)[indexPath.item]
         cell.languageButton.setTitle(language, for: .normal)
         cell.languageButton.addTarget(self, action: #selector(languagePicked), for: .touchUpInside)
         cell.languageButton.backgroundColor = colorsArray[indexPath.item % colorsArray.count]
@@ -111,7 +98,9 @@ extension SelectLanguageVC: UICollectionViewDelegate, UICollectionViewDataSource
     
 
     
-    @objc func languagePicked(){
+    @objc func languagePicked(_ sender: UIButton){
+        guard let selectedLanguage = sender.currentTitle, let languageCode = languages[selectedLanguage] else {return}
+        
         
     }
 

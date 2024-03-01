@@ -11,9 +11,10 @@ import UIKit
 class LanguagesButtonCell: UICollectionViewCell {
     let languageButton: UIButton = {
         let languageButton = UIButton(type: .system)
-        languageButton.titleLabel?.font = .boldSystemFont(ofSize: 15)
+        languageButton.titleLabel?.font = .preferredFont(forTextStyle: .title3)
+        languageButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        languageButton.titleLabel?.font = .systemFont(ofSize: 15)
         languageButton.setTitleColor(.black, for: .normal)
-        languageButton.backgroundColor = .gray
         languageButton.layer.cornerRadius = 10
        
         return languageButton
@@ -29,10 +30,7 @@ class LanguagesButtonCell: UICollectionViewCell {
             languageButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             languageButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
             languageButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            languageButton.heightAnchor.constraint(equalToConstant: 60),
-//            languageButton.widthAnchor.constraint(equalToConstant: 100)
         ])
-        
     }
     
     required init?(coder: NSCoder) {

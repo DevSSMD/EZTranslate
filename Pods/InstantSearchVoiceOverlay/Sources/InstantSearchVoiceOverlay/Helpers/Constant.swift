@@ -73,10 +73,10 @@ public class PermissionScreenConstants {
   public var rejectText = "No"
   
   /// Text color of all labels in screen
-  public var textColor: UIColor = .white
+  public var textColor: UIColor = .black
   
   /// Background color of the view
-  public var backgroundColor: UIColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 0.95)
+    public var backgroundColor: UIColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 0.95)
   
   /// Start gradient color for the permission button
   public var startGradientColor = UIColor(red: 73/255, green: 171/255, blue: 248/255, alpha: 1)
@@ -100,7 +100,7 @@ public class NoPermissionScreenConstants {
   public var doneText = "Done"
   
   /// Text color of all labels in screen
-  public var textColor: UIColor = .white
+  public var textColor: UIColor = .black
   
   /// Background color of the view
   public var backgroundColor: UIColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 0.95)
@@ -145,10 +145,10 @@ public class InputScreenConstants {
   public var inputButtonConstants = InputButtonConstants()
   
   /// Text color of all labels in screen
-  public var textColor: UIColor = .white
+  public var textColor: UIColor = .black 
   
   /// Background color of the view
-  public var backgroundColor: UIColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 0.95)
+    public var backgroundColor: UIColor = .lightGray /*UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 0.95)*/
 }
 
 public class ResultScreenConstants {
@@ -169,7 +169,7 @@ public class ResultScreenConstants {
   public var startAgainText = "Start Again"
   
   /// Text color of all labels in screen
-  public var textColor: UIColor = .white
+  public var textColor: UIColor = .black
   
   /// Background color of the view
   public var backgroundColor: UIColor = UIColor(red: 51/255, green: 74/255, blue: 97/255, alpha: 1)

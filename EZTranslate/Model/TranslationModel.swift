@@ -8,9 +8,9 @@
 import Foundation
 
 struct Data: Codable {
-    var translations: [Translations]
+    var translations: [Translations]?
 }
 
 struct Translations: Codable {
-    var translatedText: String
+    var translatedText: String?
 }

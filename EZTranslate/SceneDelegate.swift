@@ -18,12 +18,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
            let window = UIWindow(windowScene: windowScene)
 
-           window.rootViewController = viewController
+           window.rootViewController = createTabBar()
 
            window.makeKeyAndVisible()
            self.window = window
     }
-
+    
+    func createSearchNavController() -> UINavigationController {
+        let searchVC = SelectLanguageVC()
+        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        
+        return UINavigationController(rootViewController: searchVC)
+    }
+    
+    
+    func createTranslateNavController() -> UINavigationController {
+        let translateVC = TranslateViewController()
+        translateVC.tabBarItem = UITabBarItem(title: "Translate", image: UIImage(systemName: "mic.badge.plus"), tag: 0)
+        
+        return UINavigationController(rootViewController: translateVC)
+    }
+    
+    func createFavoritesNavController() -> UINavigationController {
+        let favoritesVC = FavoritesVC()
+        favoritesVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+        
+        return UINavigationController(rootViewController: favoritesVC)
+    }
+    
+    func createTabBar() -> UITabBarController {
+        let tabBar = UITabBarController()
+        UITabBar.appearance().tintColor = .systemYellow
+        tabBar.tabBar.backgroundColor = .systemBackground
+        tabBar.viewControllers = [createSearchNavController(), createTranslateNavController(), createFavoritesNavController()]
+        
+        return tabBar
+    }
+    
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
