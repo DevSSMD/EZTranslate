@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Data: Codable {
+struct APIResponse: Codable {
     var translations: [Translations]?
 }
 

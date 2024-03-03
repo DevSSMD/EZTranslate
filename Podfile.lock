@@ -1,16 +1,20 @@
 PODS:
   - InstantSearchVoiceOverlay (1.2.0)
+  - SCLAlertView (0.8)
 
 DEPENDENCIES:
   - InstantSearchVoiceOverlay
+  - SCLAlertView (~> 0.8)
 
 SPEC REPOS:
   trunk:
     - InstantSearchVoiceOverlay
+    - SCLAlertView
 
 SPEC CHECKSUMS:
   InstantSearchVoiceOverlay: d9d5db7314ec8416dcf4ed49df2000e8ee0abe2b
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
 
-PODFILE CHECKSUM: 01951e63e7668915772baa935dba9144395e489b
+PODFILE CHECKSUM: 5d2604dcb9810a1f805779c3e8d4d517130e5648
 
 COCOAPODS: 1.14.3

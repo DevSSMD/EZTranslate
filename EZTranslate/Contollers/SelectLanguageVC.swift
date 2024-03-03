@@ -1,9 +1,16 @@
 
 
 import UIKit
+import SCLAlertView
+
+protocol LanguageDelegate: AnyObject {
+    func didSelectLanguage(_ languageCode: String?)
+}
 
 class SelectLanguageVC: UIViewController {
-
+    
+    weak var delegate: LanguageDelegate?
+    
     let layout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView!
     let titleLabel = UILabel()
@@ -35,7 +42,7 @@ class SelectLanguageVC: UIViewController {
         view.backgroundColor = .systemBackground
         
         titleLabel.text = "Select Language"
-        titleLabel.textColor = .black 
+        titleLabel.textColor = .label
         titleLabel.font = .preferredFont(forTextStyle: .headline)
         titleLabel.textAlignment = .center
         
@@ -58,6 +65,7 @@ class SelectLanguageVC: UIViewController {
         super.viewDidLayoutSubviews()
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemBackground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -70,8 +78,6 @@ class SelectLanguageVC: UIViewController {
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.widthAnchor.constraint(equalToConstant: 200),
             titleLabel.heightAnchor.constraint(equalToConstant: 50)
-           
-        
         ])
     }
 }
@@ -86,7 +92,7 @@ extension SelectLanguageVC: UICollectionViewDelegate, UICollectionViewDataSource
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LanguagesButtonCell", for: indexPath) as? LanguagesButtonCell
         else {
             fatalError("unable to dequeue cell")
-        }
+    }
         
         let language = Array(languages.keys)[indexPath.item]
         cell.languageButton.setTitle(language, for: .normal)
@@ -96,12 +102,11 @@ extension SelectLanguageVC: UICollectionViewDelegate, UICollectionViewDataSource
         return cell
     }
     
-
     
-    @objc func languagePicked(_ sender: UIButton){
+    @objc func languagePicked(_ sender: UIButton) {
         guard let selectedLanguage = sender.currentTitle, let languageCode = languages[selectedLanguage] else {return}
+        SCLAlertView().showSuccess("Success!", subTitle: "You chose to translate to \(selectedLanguage)!")
         
-        
+        delegate?.didSelectLanguage(languageCode)
     }
-
 }

@@ -10,39 +10,33 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    let translationViewController = TranslateViewController()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-           let viewController = TranslateViewController()
-
-           let window = UIWindow(windowScene: windowScene)
-
-           window.rootViewController = createTabBar()
-
-           window.makeKeyAndVisible()
-           self.window = window
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = createTabBar()
+        window.makeKeyAndVisible()
+        self.window = window
     }
     
     func createSearchNavController() -> UINavigationController {
         let searchVC = SelectLanguageVC()
         searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        
+        searchVC.delegate = translationViewController
         return UINavigationController(rootViewController: searchVC)
     }
     
     
     func createTranslateNavController() -> UINavigationController {
-        let translateVC = TranslateViewController()
-        translateVC.tabBarItem = UITabBarItem(title: "Translate", image: UIImage(systemName: "mic.badge.plus"), tag: 0)
-        
-        return UINavigationController(rootViewController: translateVC)
+
+        translationViewController.tabBarItem = UITabBarItem(title: "Translate", image: UIImage(systemName: "mic.badge.plus"), tag: 0)
+        return UINavigationController(rootViewController: translationViewController)
     }
     
     func createFavoritesNavController() -> UINavigationController {
         let favoritesVC = FavoritesVC()
         favoritesVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
-        
         return UINavigationController(rootViewController: favoritesVC)
     }
     

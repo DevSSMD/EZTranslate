@@ -8,10 +8,11 @@ struct TranslationManager {
     let apiKey = "AIzaSyCSBNjPbN-JVoy3iCoexJZ_x3C40gq7tXo"
     
     
-    public func translateText(for text: String, from source: String, to targetLanguage: String, completion: @escaping (Result<String, Error>) -> Void) {
+    public func translateText(for text: String, to targetLanguage: String, completion: @escaping (Result<String, Error>) -> Void) {
         let urlString = "\(baseURL)?key=\(apiKey)"
           guard let url = URL(string: urlString) else {
               completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+             
               return
           }
 
@@ -21,7 +22,6 @@ struct TranslationManager {
 
           let parameters: [String: Any] = [
               "q": text,
-              "source": source,
               "target": targetLanguage
           ]
 
@@ -48,20 +48,18 @@ struct TranslationManager {
                       completion(.failure(NSError(domain: "Error parsing response", code: 0, userInfo: nil)))
                       return
                   }
+                  
+                  print(jsonResponse)
 
-                  if let translations = jsonResponse["data"] as? [String: Any],
-                     let translatedTexts = translations["translations"] as? [[String: Any]],
-                     let firstTranslation = translatedTexts.first,
-                     let translatedText = firstTranslation["translatedText"] as? String {
-                      completion(.success(translatedText))
-                  } else {
-                      completion(.failure(NSError(domain: "Error parsing response", code: 0, userInfo: nil)))
-                  }
+                  let model = try JSONDecoder().decode(APIResponse.self, from: data)
+                  completion(.success(model.translations?.first?.translatedText ?? "no response"))
+                  
               } catch {
                   completion(.failure(error))
+                  print(error)
               }
           }
-
+        
           task.resume()
       }
 }

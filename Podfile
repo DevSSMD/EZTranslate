@@ -5,6 +5,6 @@ target 'EZTranslate' do
   use_frameworks!
 
   pod 'InstantSearchVoiceOverlay'
-  
+  pod 'SCLAlertView', '~> 0.8'
 
 end
